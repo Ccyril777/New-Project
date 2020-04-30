@@ -44,7 +44,7 @@ class SystemInformation
     private $domain;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\TechnologieMI", mappedBy="systemInformation")
+     * @ORM\OneToMany(targetEntity="App\Entity\TypologyMI", mappedBy="systemInformation")
      */
     private $type;
 
@@ -159,14 +159,14 @@ class SystemInformation
     }
 
     /**
-     * @return Collection|TechnologieMI[]
+     * @return Collection|TypologyMI[]
      */
     public function getType(): Collection
     {
         return $this->type;
     }
 
-    public function addType(TechnologieMI $type): self
+    public function addType(TypologyMI $type): self
     {
         if (!$this->type->contains($type)) {
             $this->type[] = $type;
@@ -176,7 +176,7 @@ class SystemInformation
         return $this;
     }
 
-    public function removeType(TechnologieMI $type): self
+    public function removeType(TypologyMI $type): self
     {
         if ($this->type->contains($type)) {
             $this->type->removeElement($type);

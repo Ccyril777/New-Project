@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TechnologieMIRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TypologyMIRepository")
  */
-class TechnologieMI
+class TypologyMI
 {
     /**
      * @ORM\Id()
@@ -19,12 +19,12 @@ class TechnologieMI
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $longName;
+    private $shortName;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $shortName;
+    private $longName;
 
     /**
      * @ORM\Column(type="string", length=1500, nullable=true)
@@ -42,18 +42,6 @@ class TechnologieMI
         return $this->id;
     }
 
-    public function getLongName(): ?string
-    {
-        return $this->longName;
-    }
-
-    public function setLongName(string $longName): self
-    {
-        $this->longName = $longName;
-
-        return $this;
-    }
-
     public function getShortName(): ?string
     {
         return $this->shortName;
@@ -62,6 +50,18 @@ class TechnologieMI
     public function setShortName(string $shortName): self
     {
         $this->shortName = $shortName;
+
+        return $this;
+    }
+
+    public function getLongName(): ?string
+    {
+        return $this->longName;
+    }
+
+    public function setLongName(string $longName): self
+    {
+        $this->longName = $longName;
 
         return $this;
     }

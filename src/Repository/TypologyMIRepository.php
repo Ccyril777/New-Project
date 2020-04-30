@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\TechnologieMI;
+use App\Entity\TypologyMI;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method TechnologieMI|null find($id, $lockMode = null, $lockVersion = null)
- * @method TechnologieMI|null findOneBy(array $criteria, array $orderBy = null)
- * @method TechnologieMI[]    findAll()
- * @method TechnologieMI[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method TypologyMI|null find($id, $lockMode = null, $lockVersion = null)
+ * @method TypologyMI|null findOneBy(array $criteria, array $orderBy = null)
+ * @method TypologyMI[]    findAll()
+ * @method TypologyMI[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TechnologieMIRepository extends ServiceEntityRepository
+class TypologyMIRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TechnologieMI::class);
+        parent::__construct($registry, TypologyMI::class);
     }
 
     // /**
-    //  * @return TechnologieMI[] Returns an array of TechnologieMI objects
+    //  * @return TypologyMI[] Returns an array of TypologyMI objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class TechnologieMIRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?TechnologieMI
+    public function findOneBySomeField($value): ?TypologyMI
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')
