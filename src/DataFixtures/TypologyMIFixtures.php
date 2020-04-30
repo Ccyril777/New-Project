@@ -8,7 +8,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
 
-class TypologyFixtures extends Fixture
+class TypologyMIFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
@@ -22,9 +22,9 @@ class TypologyFixtures extends Fixture
             $typologymi = new typologymi();
             $typologymi->setShortName($faker->firstname);
             $typologymi->setLongName($faker->lastname);
-            $typologymi->setDescription($faker->firstname);
+            $typologymi->setDescription($faker->text);
             $typologymi->setSystemInformation($systemInformation);
-            $manager->persist($domaine);
+            $manager->persist($typologymi);
         }
         $manager->flush();
     }

@@ -15,6 +15,8 @@ use App\Entity\Domaine;
 use App\Entity\DomaineRepository;
 use App\Entity\TypologyMI;
 use App\Entity\TypologyMIRepository;
+use App\Entity\ColorSI;
+use App\Entity\ColorSIReposiroty;
 
 /**
  * @Route("/system/information")
