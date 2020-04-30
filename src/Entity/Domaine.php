@@ -21,6 +21,12 @@ class Domaine
      */
     private $domaineName;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SystemInformation", inversedBy="domain")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $systemInformation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +40,18 @@ class Domaine
     public function setDomaineName(string $domaineName): self
     {
         $this->domaineName = $domaineName;
+
+        return $this;
+    }
+
+    public function getSystemInformation(): ?SystemInformation
+    {
+        return $this->systemInformation;
+    }
+
+    public function setSystemInformation(?SystemInformation $systemInformation): self
+    {
+        $this->systemInformation = $systemInformation;
 
         return $this;
     }

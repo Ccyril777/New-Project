@@ -38,9 +38,15 @@ class SystemInformation
      */
     private $confidentialite;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Domaine", mappedBy="systemInformation")
+     */
+    private $domain;
+
     public function __construct()
     {
         $this->confidentialite = new ArrayCollection();
+        $this->domain = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,6 +115,37 @@ class SystemInformation
             // set the owning side to null (unless already changed)
             if ($confidentialite->getSystemInformation() === $this) {
                 $confidentialite->setSystemInformation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Domaine[]
+     */
+    public function getDomain(): Collection
+    {
+        return $this->domain;
+    }
+
+    public function addDomain(Domaine $domain): self
+    {
+        if (!$this->domain->contains($domain)) {
+            $this->domain[] = $domain;
+            $domain->setSystemInformation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDomain(Domaine $domain): self
+    {
+        if ($this->domain->contains($domain)) {
+            $this->domain->removeElement($domain);
+            // set the owning side to null (unless already changed)
+            if ($domain->getSystemInformation() === $this) {
+                $domain->setSystemInformation(null);
             }
         }
 
