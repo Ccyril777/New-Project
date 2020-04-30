@@ -17,6 +17,7 @@ class SystemInformationType extends AbstractType
             ->add('description')
             ->add('confidentialite', null, ['choice_label' => 'confidentialiteName'])
             ->add('domain', null, ['choice_label' => 'domaineName'])
+            ->add('type', null, ['choice_label' => 'shortName'])
         ;
     }
 
