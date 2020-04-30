@@ -21,6 +21,12 @@ class Confidentialite
      */
     private $confidentialiteName;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SystemInformation", inversedBy="confidentialite")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $systemInformation;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +40,18 @@ class Confidentialite
     public function setConfidentialiteName(string $confidentialiteName): self
     {
         $this->confidentialiteName = $confidentialiteName;
+
+        return $this;
+    }
+
+    public function getSystemInformation(): ?SystemInformation
+    {
+        return $this->systemInformation;
+    }
+
+    public function setSystemInformation(?SystemInformation $systemInformation): self
+    {
+        $this->systemInformation = $systemInformation;
 
         return $this;
     }

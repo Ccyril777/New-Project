@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -30,6 +32,16 @@ class SystemInformation
      * @ORM\Column(type="string", length=1500, nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Confidentialite", mappedBy="systemInformation", orphanRemoval=true)
+     */
+    private $confidentialite;
+
+    public function __construct()
+    {
+        $this->confidentialite = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -68,6 +80,37 @@ class SystemInformation
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Confidentialite[]
+     */
+    public function getConfidentialite(): Collection
+    {
+        return $this->confidentialite;
+    }
+
+    public function addConfidentialite(Confidentialite $confidentialite): self
+    {
+        if (!$this->confidentialite->contains($confidentialite)) {
+            $this->confidentialite[] = $confidentialite;
+            $confidentialite->setSystemInformation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConfidentialite(Confidentialite $confidentialite): self
+    {
+        if ($this->confidentialite->contains($confidentialite)) {
+            $this->confidentialite->removeElement($confidentialite);
+            // set the owning side to null (unless already changed)
+            if ($confidentialite->getSystemInformation() === $this) {
+                $confidentialite->setSystemInformation(null);
+            }
+        }
 
         return $this;
     }
