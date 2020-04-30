@@ -43,10 +43,16 @@ class SystemInformation
      */
     private $domain;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TechnologieMI", mappedBy="systemInformation")
+     */
+    private $type;
+
     public function __construct()
     {
         $this->confidentialite = new ArrayCollection();
         $this->domain = new ArrayCollection();
+        $this->type = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +152,37 @@ class SystemInformation
             // set the owning side to null (unless already changed)
             if ($domain->getSystemInformation() === $this) {
                 $domain->setSystemInformation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TechnologieMI[]
+     */
+    public function getType(): Collection
+    {
+        return $this->type;
+    }
+
+    public function addType(TechnologieMI $type): self
+    {
+        if (!$this->type->contains($type)) {
+            $this->type[] = $type;
+            $type->setSystemInformation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeType(TechnologieMI $type): self
+    {
+        if ($this->type->contains($type)) {
+            $this->type->removeElement($type);
+            // set the owning side to null (unless already changed)
+            if ($type->getSystemInformation() === $this) {
+                $type->setSystemInformation(null);
             }
         }
 
